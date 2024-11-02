@@ -18,12 +18,24 @@
             </p>
           </div>
           <div class="card-footer">
-            <button
-              @click="deleteProducts(product.id)"
-              class="btn btn-sm btn-danger"
-            >
-              Delete
-            </button>
+            <div class="col-3 offset-9 d-flex">
+              <button
+                @click="deleteProducts(product.id)"
+                class="btn btn-sm btn-danger mx-2"
+              >
+                Delete
+              </button>
+              <button class="btn btn-sm btn-info mx-2">
+                <router-link
+                  class="text-decoration-none text-dark"
+                  :to="{
+                    name: 'product',
+                    params: { id: product.id, title: product.title },
+                  }"
+                  >Detail</router-link
+                >
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -48,7 +60,7 @@ export default {
         products.value = await response.json();
       } catch (e) {
         error.value = e.message;
-        console.log(error.value);
+        // console.log(error.value);
       }
     };
 

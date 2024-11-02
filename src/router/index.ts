@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductsView from '@/views/ProductsView.vue'
+import NotFoundView from '@/views/auth/notFoundView.vue'
+import NavBtnView from '@/views/TestView/NavBtnView.vue'
+import ProductView from '@/views/ProductView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    alias:"/home",
     name: 'home',
     component: HomeView
   },
@@ -27,10 +31,35 @@ const routes: Array<RouteRecordRaw> = [
     component:()=>import("@/views/auth/LoginView.vue")
   },
   {
-    path:"/register",
+    path: "/register",
+    alias:"/userRegister",
     name: "register",
     component:()=>import("@/views/auth/RegisterView.vue")
+  },
+  {
+    path: '/nav-btn',
+    name: "navBtn",
+    component: NavBtnView
+  },
+  {
+    path: '/products/:id/:title',
+    name: 'product',
+    component: ProductView,
+    props:true
+  },
+  {
+    // redirect url
+    path: "/userLogin",
+    redirect: "login"
+  },
+  {
+    // 404 page
+    // path: '/:catchAll(.*)',
+    path:'/:pathMatch(.*)*',
+    component:NotFoundView,
   }
+  
+  
 ]
 
 const router = createRouter({

@@ -46,6 +46,7 @@ export default {
   setup() {
     const goHome = () => {
       router.push({ name: "home" });
+      console.log(router);
     };
 
     return { goHome };
