@@ -26,7 +26,9 @@ npm run lint
 
 ### json-server
 
+```
 json-server -watch data/bd.json --port=5000
+```
 
 ### Customize configuration
 
