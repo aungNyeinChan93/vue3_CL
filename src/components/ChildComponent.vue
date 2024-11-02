@@ -10,6 +10,7 @@
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit
         repudiandae maxime sunt?
       </p>
+      <slot name="child" />
     </div>
   </section>
 </template>

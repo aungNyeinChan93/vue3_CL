@@ -7,9 +7,15 @@
         :description="description"
         @test="testAction"
       />
+      <hr />
       <ChildComponent />
-      <ChildComponent />
-      <ChildComponent />
+      <hr />
+      <ChildComponent>
+        <template v-slot:child>
+          <h4>{{ title }} by slot</h4>
+          <p>{{ description }}</p>
+        </template>
+      </ChildComponent>
     </div>
   </section>
 </template>
