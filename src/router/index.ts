@@ -4,6 +4,7 @@ import ProductsView from '@/views/ProductsView.vue'
 import NotFoundView from '@/views/auth/notFoundView.vue'
 import NavBtnView from '@/views/TestView/NavBtnView.vue'
 import ProductView from '@/views/ProductView.vue'
+import ListsView from '@/views/Lists/ListsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -51,6 +52,12 @@ const routes: Array<RouteRecordRaw> = [
     // redirect url
     path: "/userLogin",
     redirect: "login"
+  },
+  {
+    path: "/lists",
+    alias: "/allLists",
+    name: "lists",
+    component:ListsView
   },
   {
     // 404 page

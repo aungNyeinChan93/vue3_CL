@@ -11,14 +11,20 @@
           Go Products
         </button>
       </div>
+      <ParentComponent />
     </div>
   </section>
 </template>
 
 <script>
+import ParentComponent from "@/components/ParentComponent.vue";
+
 export default {
   //option api
   name: "NavBtnView",
+  components: {
+    ParentComponent,
+  },
   methods: {
     goHome() {
       this.$router.push("/");
