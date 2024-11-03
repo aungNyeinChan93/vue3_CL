@@ -11,7 +11,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     alias:"/home",
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    //middleware 
+    beforeEnter: (to, from, next) => {
+      if (from.path == "/login" || from.name == 'register') {
+        next();
+      } else {
+        next("login")
+      }
+    },
   },
   {
     path: '/about',
