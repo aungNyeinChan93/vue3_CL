@@ -5,6 +5,7 @@ import NotFoundView from "@/views/auth/notFoundView.vue";
 import NavBtnView from "@/views/TestView/NavBtnView.vue";
 import ProductView from "@/views/ProductView.vue";
 import ListsView from "@/views/Lists/ListsView.vue";
+import TodosView from "@/views/TodosView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,7 +15,6 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
     //middleware
     beforeEnter: (to, from, next) => {
-      console.log(from, to);
       if (
         from.path == "/login" ||
         from.name == "register" ||
@@ -94,6 +94,11 @@ const routes: Array<RouteRecordRaw> = [
     // path: "/:pathMatch(.*)*",
     component: NotFoundView,
   },
+  {
+    path: '/todos',
+    name: 'todos',
+    component: TodosView
+  }
 ];
 
 const router = createRouter({
