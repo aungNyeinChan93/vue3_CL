@@ -1,85 +1,104 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ProductsView from '@/views/ProductsView.vue'
-import NotFoundView from '@/views/auth/notFoundView.vue'
-import NavBtnView from '@/views/TestView/NavBtnView.vue'
-import ProductView from '@/views/ProductView.vue'
-import ListsView from '@/views/Lists/ListsView.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import ProductsView from "@/views/ProductsView.vue";
+import NotFoundView from "@/views/auth/notFoundView.vue";
+import NavBtnView from "@/views/TestView/NavBtnView.vue";
+import ProductView from "@/views/ProductView.vue";
+import ListsView from "@/views/Lists/ListsView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    alias:"/home",
-    name: 'home',
+    path: "/",
+    alias: "/home",
+    name: "home",
     component: HomeView,
-    //middleware 
+    //middleware
     beforeEnter: (to, from, next) => {
-      if (from.path == "/login" || from.name == 'register') {
+      console.log(from, to);
+      if (
+        from.path == "/login" ||
+        from.name == "register" ||
+        from.name == "404"
+      ) {
         next();
       } else {
-        next("login")
+        next("login");
       }
     },
   },
   {
-    path: '/about',
-    name: 'about',
+    path: "/about",
+    name: "about",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
   {
-    path: '/products',
+    path: "/products",
     name: "products",
-    component:ProductsView
+    component: ProductsView,
+    beforeEnter: (from, to, next) => {
+      if (localStorage.getItem("auth") == "true") {
+        next()
+      } else {
+        next({ name: 'login' })
+      }
+    }
   },
   {
-    path: '/login',
+    path: "/login",
     name: "login",
-    component:()=>import("@/views/auth/LoginView.vue")
+    component: () => import("@/views/auth/LoginView.vue"),
   },
   {
     path: "/register",
-    alias:"/userRegister",
+    alias: "/userRegister",
     name: "register",
-    component:()=>import("@/views/auth/RegisterView.vue")
+    component: () => import("@/views/auth/RegisterView.vue"),
   },
   {
-    path: '/nav-btn',
+    path: "/nav-btn",
     name: "navBtn",
-    component: NavBtnView
+    component: NavBtnView,
   },
   {
-    path: '/products/:id/:title',
-    name: 'product',
+    path: "/products/:id/:title",
+    name: "product",
     component: ProductView,
-    props:true
+    props: true,
+    beforeEnter: (from, to, next) => {
+      if (to.name == "products") {
+        next();
+      } else {
+        next("products");
+      }
+    },
   },
   {
     // redirect url
     path: "/userLogin",
-    redirect: "login"
+    redirect: "login",
   },
   {
     path: "/lists",
     alias: "/allLists",
     name: "lists",
-    component:ListsView
+    component: ListsView,
   },
   {
     // 404 page
-    // path: '/:catchAll(.*)',
-    path:'/:pathMatch(.*)*',
-    component:NotFoundView,
-  }
-  
-  
-]
+    path: "/:catchAll(.*)",
+    name: "404",
+    // path: "/:pathMatch(.*)*",
+    component: NotFoundView,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

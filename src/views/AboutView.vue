@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import router from "@/router";
+// import router from "@/router";
 
 export default {
   setup() {
-    router.beforeEach((to, from, next) => {
-      if (to.name == "products" || to.name == "navBtn") {
-        next();
-      }
-    });
+    // router.beforeEach((to, from, next) => {
+    //   if (to.name == "navBtn") {
+    //     next();
+    //   }
+    // });
     return {};
   },
 };
