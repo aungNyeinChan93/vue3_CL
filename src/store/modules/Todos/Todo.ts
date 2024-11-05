@@ -33,6 +33,11 @@ export default {
         },
         updateStatus(context, id) {
             context.commit('editStatus', id)
+        },
+        testAction: ({ state }) => {
+            state.test = 'change test'
+            console.log('testAction ran');
+
         }
     },
 }

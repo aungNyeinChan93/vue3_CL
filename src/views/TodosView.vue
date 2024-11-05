@@ -14,6 +14,10 @@
         {{ pageName }} || {{ pageName_optionApi }} || {{ users }} ||
         {{ userCounts }}
       </h4>
+
+      <button class="btn btn-danger my-2" @click="testAction">
+        Test Action
+      </button>
     </div>
   </section>
 </template>
@@ -21,7 +25,7 @@
 <script>
 import SingleTodoComponent from "@/components/SingleTodoComponent.vue";
 import { computed, onMounted, ref } from "vue";
-import { mapGetters, mapState, useStore } from "vuex";
+import { mapActions, mapGetters, mapState, useStore } from "vuex";
 
 export default {
   name: "TodosView",
@@ -56,5 +60,6 @@ export default {
     ...mapState({ users: (state) => state.Todos.users }),
     ...mapGetters(["getTodos"]),
   },
+  methods: { ...mapActions(["testAction", "todosData"]) },
 };
 </script>

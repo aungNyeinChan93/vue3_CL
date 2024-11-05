@@ -6,6 +6,7 @@ import NavBtnView from "@/views/TestView/NavBtnView.vue";
 import ProductView from "@/views/ProductView.vue";
 import ListsView from "@/views/Lists/ListsView.vue";
 import TodosView from "@/views/TodosView.vue";
+import TestView from "@/views/TestView/TestView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -98,6 +99,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/todos',
     name: 'todos',
     component: TodosView
+  },
+  {
+    path: '/test',
+    name: "Test",
+    component: TestView
   }
 ];
 

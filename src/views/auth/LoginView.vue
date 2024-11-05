@@ -34,6 +34,12 @@
             >
               Go Home
             </button>
+            <button
+              class="btn btn-sm btn-secondary float-start my-2"
+              @click="gotoTest"
+            >
+              Go To Test
+            </button>
           </form>
         </div>
       </div>
@@ -72,7 +78,11 @@ export default {
       localStorage.setItem("auth", false);
     };
 
-    return { goHome, user, userLogin, userLogout };
+    const gotoTest = () => {
+      router.push({ name: "Test" });
+    };
+
+    return { goHome, user, userLogin, userLogout, gotoTest };
   },
 };
 </script>
