@@ -56,8 +56,9 @@ export default {
       email: ref(""),
       password: ref(""),
     };
+
     const userLogin = () => {
-      console.log(user.email, user.password);
+      // console.log(user.email, user.password);
       if (user.email !== "" && user.password !== "") {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("auth", true);
